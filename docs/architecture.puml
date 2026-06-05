@@ -16,7 +16,18 @@ package "KI-Journalgranskaren (Frontend React SPA)" {
   [XlsxParser] ..> [aliasMatcher] : Maps headers & validates
   
   [aliasMatcher] ..> [types/chart] : Returns ParsedChartFile
+
+  [App] ..> [db] : Records reviewer actions
+  [PatientOverview] ..> [db] : Verifies & exports audit log
+  [db] --> [computeSHA256] : SHA-256 (Web Crypto)
 }
+
+database "Local Browser Storage\n(IndexedDB: ki_audit_db)" as AuditDB {
+  [Audit Log Hash Chain] as Chain
+}
+
+[db] --> Chain : Append-only, prevHash-linked entries
+Chain ..> [db] : verifyAuditLogChain() recomputes hashes
 
 database "Local File System\n(Secure Offline Computer)" as LocalFS {
   [CSV Journal Export] as CSV

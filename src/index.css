@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #213547;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure container takes appropriate height for shaders to display correctly */
+#NotesTabPanel {
+  max-height: calc(100vh - 280px);
+  padding-bottom: 20px;
+}

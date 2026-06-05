@@ -1,0 +1,36 @@
+@startuml KI-Journalgranskaren Architecture
+
+package "KI-Journalgranskaren (Frontend React SPA)" {
+  [App] --> [SecurityNotice] : Renders privacy notice
+  [App] --> [ImportSummary] : Displays parsed statistics & warnings
+  [App] --> [NoteList] : Renders scrolling viewport with shaders
+  [NoteList] --> [Note] : Renders patient note cards
+  [Note] --> [NoteHeader] : Renders metadata (Date, Author)
+  [Note] --> [MarkdownTypography] : Renders parsed journal body text
+
+  [App] ..> [parser/index] : Uses getParserForFile()
+  [parser/index] --> [CsvParser] : Selector
+  [parser/index] --> [XlsxParser] : Selector
+
+  [CsvParser] ..> [aliasMatcher] : Maps headers & validates
+  [XlsxParser] ..> [aliasMatcher] : Maps headers & validates
+  
+  [aliasMatcher] ..> [types/chart] : Returns ParsedChartFile
+}
+
+database "Local File System\n(Secure Offline Computer)" as LocalFS {
+  [CSV Journal Export] as CSV
+  [Excel Journal Export] as XLSX
+}
+
+[App] <.. CSV : File input selection
+[App] <.. XLSX : File input selection
+
+package "Desktop Wrapper (Tauri Release Build)" {
+  [Native OS Window] as Win
+  [WebView2 / WebKit] as Webview
+  Win --> Webview : Host container
+  Webview ..> [App] : Renders React SPA
+}
+
+@enduml

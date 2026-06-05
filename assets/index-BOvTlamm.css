@@ -1,0 +1,1 @@
+body{color:#213547;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:#f9f9f9;margin:0;padding:0;font-family:Inter,system-ui,Avenir,Helvetica,Arial,sans-serif}#root{flex-direction:column;min-height:100vh;display:flex}#NotesTabPanel{max-height:calc(100vh - 280px);padding-bottom:20px}

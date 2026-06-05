@@ -7,7 +7,9 @@ A local, **offline-first** patient chart note viewer for Karolinska Institutet (
 **View it in your browser (no install required):**
 👉 **https://gforge.github.io/Journalgranskaren/**
 
-The site is a static build deployed to the [`gh-pages`](https://github.com/gforge/Journalgranskaren/tree/gh-pages) branch by GitHub Actions on every push to `main`. It runs fully client-side, so the public demo is just as offline as a local build — try it with the two bundled example datasets straight from the welcome screen.
+The site is a static build deployed to the [`gh-pages`](https://github.com/gforge/Journalgranskaren/tree/gh-pages) branch by GitHub Actions on every push to `main`. It runs fully client-side, so the public demo is just as offline as a local build. Use the two bundled example dataset buttons on the welcome screen to explore the app without uploading a file.
+
+The bundled examples use deliberately invalid pseudo-identifiers in the `Personnummer` column, such as `1970707-ABCD`, so they cannot be mistaken for real Swedish personal identity numbers.
 
 > For real patient data, prefer a local build (`npm run build`) or the desktop executable (`npm run tauri build`) on an approved research computer.
 

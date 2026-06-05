@@ -2,7 +2,7 @@
 
 KI-Journalgranskaren is a local, offline patient chart note viewer designed for Karolinska Institutet (KI). It allows researchers to load CSV or Excel spreadsheet journal exports, auto-maps columns, and displays patient notes in a clean, scrollable interface styled after MedBench.
 
-> **🔗 Try it in the browser:** A static build is published to GitHub Pages at **https://gforge.github.io/Journalgranskaren/** on every push to `main`. It runs fully client-side (no uploads), so you can explore the bundled example datasets without installing anything. For real patient data, use a local build or the desktop executable on an approved research computer.
+> **🔗 Try it in the browser:** A static build is published to GitHub Pages at **https://gforge.github.io/Journalgranskaren/** on every push to `main`. It runs fully client-side (no uploads), so you can explore the bundled example datasets from the welcome-screen buttons without installing anything. For real patient data, use a local build or the desktop executable on an approved research computer.
 
 ---
 
@@ -70,7 +70,9 @@ Entries written before the hash chain feature existed (no `hash`/`prevHash`) are
 
 ## 3. Included Examples (`docs/example/`)
 
-We provide two example datasets to demonstrate parsing behavior:
+We provide two example datasets to demonstrate parsing behavior. They are also bundled into the GitHub Pages build under `public/examples/`, where the welcome-screen buttons load them directly.
+
+The `Personnummer` values are intentionally invalid pseudo-identifiers, for example `1970707-ABCD`, rather than real or realistically formatted Swedish personal identity numbers.
 
 ### [chart_only.csv](example/chart_only.csv)
 *   **Purpose**: Demonstrates standard chart-only export parsing.

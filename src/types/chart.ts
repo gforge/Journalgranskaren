@@ -67,4 +67,6 @@ export interface AuditLog {
   action: string;
   patientId?: string;
   details?: string;
+  hash?: string;
+  prevHash?: string;
 }

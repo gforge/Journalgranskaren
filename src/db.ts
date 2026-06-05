@@ -26,13 +26,63 @@ export function initDB(): Promise<IDBDatabase> {
   });
 }
 
+async function computeSHA256(message: string): Promise<string> {
+  if (!window.crypto || !window.crypto.subtle) {
+    let hash = 0;
+    for (let i = 0; i < message.length; i++) {
+      const char = message.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return 'fallback_' + Math.abs(hash).toString(16);
+  }
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex;
+}
+
 export async function addAuditLog(log: Omit<AuditLog, 'id'>): Promise<number> {
   try {
     const db = await initDB();
+    
+    // Find the last log entry to get the previous hash
+    const lastLog = await new Promise<AuditLog | null>((resolve, reject) => {
+      const transaction = db.transaction(STORE_NAME, 'readonly');
+      const store = transaction.objectStore(STORE_NAME);
+      const request = store.openCursor(null, 'prev'); // Get newest
+      request.onsuccess = (event) => {
+        const cursor = (event.target as IDBRequest<IDBCursorWithValue | null>).result;
+        resolve(cursor ? (cursor.value as AuditLog) : null);
+      };
+      request.onerror = () => {
+        reject(new Error('Failed to query last log entry.'));
+      };
+    });
+
+    const prevHash = lastLog ? (lastLog.hash || '0') : '0';
+    const fieldsToHash = [
+      prevHash,
+      log.timestamp,
+      log.reviewerName,
+      log.action,
+      log.patientId || '',
+      log.details || ''
+    ].join('|');
+    
+    const hash = await computeSHA256(fieldsToHash);
+    
+    const logWithChain: AuditLog = {
+      ...log,
+      prevHash,
+      hash
+    };
+
     return new Promise((resolve, reject) => {
       const transaction = db.transaction(STORE_NAME, 'readwrite');
       const store = transaction.objectStore(STORE_NAME);
-      const request = store.add(log);
+      const request = store.add(logWithChain);
 
       request.onsuccess = () => {
         resolve(request.result as number);
@@ -73,6 +123,66 @@ export async function getAllAuditLogs(): Promise<AuditLog[]> {
   }
 }
 
+export async function verifyAuditLogChain(): Promise<{ isValid: boolean; errorMsg?: string }> {
+  try {
+    const db = await initDB();
+    const logs = await new Promise<AuditLog[]>((resolve, reject) => {
+      const transaction = db.transaction(STORE_NAME, 'readonly');
+      const store = transaction.objectStore(STORE_NAME);
+      const request = store.getAll();
+      request.onsuccess = () => {
+        resolve(request.result as AuditLog[]);
+      };
+      request.onerror = () => {
+        reject(new Error('Failed to retrieve audit logs.'));
+      };
+    });
+
+    // Sort logs by ID ascending to verify sequentially
+    logs.sort((a, b) => (a.id || 0) - (b.id || 0));
+
+    let expectedPrevHash: string | null = null;
+    for (let i = 0; i < logs.length; i++) {
+      const log = logs[i];
+      if (!log.hash || !log.prevHash) {
+        // Skip legacy log entries without hash
+        continue;
+      }
+      
+      if (expectedPrevHash !== null && log.prevHash !== expectedPrevHash) {
+        return {
+          isValid: false,
+          errorMsg: `Loggkedjan är bruten: förväntade prevHash "${expectedPrevHash}", men fann "${log.prevHash}" på rad ID ${log.id}.`
+        };
+      }
+
+      const fieldsToHash = [
+        log.prevHash,
+        log.timestamp,
+        log.reviewerName,
+        log.action,
+        log.patientId || '',
+        log.details || ''
+      ].join('|');
+      
+      const computedHash = await computeSHA256(fieldsToHash);
+      if (log.hash !== computedHash) {
+        return {
+          isValid: false,
+          errorMsg: `Integritetsfel: hash "${log.hash}" matchar inte beräknad hash "${computedHash}" på rad ID ${log.id}.`
+        };
+      }
+      
+      expectedPrevHash = log.hash;
+    }
+
+    return { isValid: true };
+  } catch (error) {
+    console.error('Failed to verify audit logs:', error);
+    return { isValid: false, errorMsg: String(error) };
+  }
+}
+
 export async function downloadAuditLogsCSV(): Promise<void> {
   try {
     const logs = await getAllAuditLogs();
@@ -84,7 +194,9 @@ export async function downloadAuditLogsCSV(): Promise<void> {
       Reviewer: l.reviewerName,
       Action: l.action,
       PatientID: l.patientId || 'N/A',
-      Details: l.details || ''
+      Details: l.details || '',
+      Hash: l.hash || '',
+      PrevHash: l.prevHash || ''
     }));
 
     const csv = Papa.unparse(csvData);

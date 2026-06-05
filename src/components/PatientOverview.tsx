@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   Box,
   Paper,
@@ -14,16 +14,19 @@ import {
   Chip,
   IconButton,
   Tooltip,
+  CircularProgress,
 } from '@mui/material';
 import {
   OpenInNew as OpenInNewIcon,
   CheckCircle as CheckCircleIcon,
   Download as DownloadIcon,
   HelpOutlined as HelpOutlineIcon,
+  Verified as VerifiedIcon,
+  Warning as WarningIcon,
 } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { ParsedChartNote, PatientReviewStatus } from 'src/types/chart';
-import { downloadAuditLogsCSV } from 'src/db';
+import { downloadAuditLogsCSV, verifyAuditLogChain } from 'src/db';
 import dayjs from 'dayjs';
 
 interface PatientOverviewProps {
@@ -57,6 +60,35 @@ export const PatientOverview = ({
   const { t } = useTranslation();
   const [sortField, setSortField] = useState<SortField>('id');
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+
+  const [integrityStatus, setIntegrityStatus] = useState<{ isValid: boolean; errorMsg?: string } | null>(null);
+  const [checkingIntegrity, setCheckingIntegrity] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    async function check() {
+      setCheckingIntegrity(true);
+      try {
+        const result = await verifyAuditLogChain();
+        if (active) {
+          setIntegrityStatus(result);
+        }
+      } catch (err) {
+        console.error(err);
+        if (active) {
+          setIntegrityStatus({ isValid: false, errorMsg: String(err) });
+        }
+      } finally {
+        if (active) {
+          setCheckingIntegrity(false);
+        }
+      }
+    }
+    check();
+    return () => {
+      active = false;
+    };
+  }, [notes]);
 
   // Group notes by patientId
   const patientData = useMemo(() => {
@@ -152,15 +184,56 @@ export const PatientOverview = ({
         <Typography variant="h5" sx={{ fontWeight: 700, color: 'text.primary' }}>
           {t('overviewHeader')}
         </Typography>
-        <Button
-          variant="outlined"
-          color="primary"
-          startIcon={<DownloadIcon />}
-          onClick={downloadAuditLogsCSV}
-          sx={{ borderRadius: 2, fontWeight: 600 }}
-        >
-          {t('exportLogsBtn')}
-        </Button>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          {checkingIntegrity ? (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary' }}>
+              <CircularProgress size={16} color="inherit" />
+              <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                {t('verifyingIntegrity')}
+              </Typography>
+            </Box>
+          ) : integrityStatus ? (
+            integrityStatus.isValid ? (
+              <Chip
+                icon={<VerifiedIcon style={{ color: '#2e7d32' }} />}
+                label={t('integrityVerified')}
+                variant="outlined"
+                color="success"
+                sx={{ 
+                  borderRadius: 2, 
+                  fontWeight: 600, 
+                  bgcolor: 'rgba(46, 125, 50, 0.04)',
+                  borderColor: 'rgba(46, 125, 50, 0.3)'
+                }}
+              />
+            ) : (
+              <Tooltip title={integrityStatus.errorMsg || t('integrityFailed')} arrow>
+                <Chip
+                  icon={<WarningIcon style={{ color: '#d32f2f' }} />}
+                  label={t('integrityFailed')}
+                  variant="outlined"
+                  color="error"
+                  sx={{ 
+                    borderRadius: 2, 
+                    fontWeight: 600, 
+                    bgcolor: 'rgba(211, 47, 47, 0.04)',
+                    borderColor: 'rgba(211, 47, 47, 0.3)',
+                    cursor: 'help'
+                  }}
+                />
+              </Tooltip>
+            )
+          ) : null}
+          <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<DownloadIcon />}
+            onClick={downloadAuditLogsCSV}
+            sx={{ borderRadius: 2, fontWeight: 600 }}
+          >
+            {t('exportLogsBtn')}
+          </Button>
+        </Box>
       </Box>
 
       <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>

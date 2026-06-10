@@ -1,83 +1,67 @@
-Personnummer,Namn,Ålder,Tidpunkt,Kategori,Skribent,Journaltext
-1970707-ABCD,Anders Svensson,51,2026-05-01 10:15,Inläggningsanteckning,Dr. Anders Andersson,"### Subjektivt
-51-årig man som söker för uppföljning av hypertoni samt tilltagande yrsel sedan en vecka. Upplever att det snurrar när han reser sig upp snabbt. Ingen bröstsmärta eller andnöd.
-### Objektivt
-Blodtryck mäts till 142/88. Puls reguljär, 72. Inga blåsljud på hjärtat. Lungor auskulteras utan anmärkning.
-### Assessment
-Hypertoni med ortostatisk yrsel, misstänkt överdosering eller biverkan av Enalapril efter nyligen gjord doshöjning. Inlägges för observation och justering av medicinering.
-### Planering
-Inlägges på avd 4. Blodtryckskontroller x 4. Sätt ut Enalapril tills vidare. Ta elstatus och CRP imorgon bitti."
-1970707-ABCD,Anders Svensson,51,2026-05-02 08:30,Daganteckning,Ssk. Karin Larsson,"### Aktuellt
-Sovit gott under natten. Ingen yrsel i liggande, men känner sig fortfarande lite ostadig vid mobilisering till handfatet. Blodtryck på morgonen 138/82."
-1970707-ABCD,Anders Svensson,51,2026-05-03 09:15,Daganteckning,Dr. Anders Andersson,"### Subjektivt
-Mår bättre idag. Betydligt mindre yrsel vid uppstigning.
-### Objektivt
-Stabil gång. Blodtryck 135/80. Puls 68. Elstatus visar normalt kalium och kreatinin.
-### Assessment
-Förbättring efter utsättning av Enalapril. Blodtrycket stabilt.
-### Planering
-Återinsätter Enalapril i lägre dos, 5 mg x 1 (tidigare 10 mg x 1). Nytt elstatus om två dagar."
-1970707-ABCD,Anders Svensson,51,2026-05-05 08:45,Daganteckning,Ssk. Karin Larsson,"### Aktuellt
-Patienten är uppe och går i korridoren utan problem. Ingen yrsel rapporterad efter återinsättandet av Enalapril 5 mg. Blodtryck 132/78."
-1970707-ABCD,Anders Svensson,51,2026-05-08 08:30,Daganteckning,Dr. Anders Andersson,"### Subjektivt
-Känner sig helt återställd. Ingen yrsel överhuvudtaget. Promenerar obehindrat.
-### Objektivt
-Blodtryck stabilt runt 130/80 mmHg. Puls 70. Prover visar stabilt kalium och kreatinin.
-### Assessment
-Välreglerat blodtryck på justerad Enalaprildos utan ortostatiska besvär.
-### Planering
-Planerar för utskrivning nästa vecka om blodtrycket ligger kvar på denna nivå. Kontrollera blodtryck morgon och kväll."
-1970707-ABCD,Anders Svensson,51,2026-05-11 10:00,Daganteckning,Ssk. Karin Larsson,"### Aktuellt
-Allt väl. Trycket 128/78 på morgonen. Patienten ser fram emot utskrivning."
-1970707-ABCD,Anders Svensson,51,2026-05-15 14:00,Slutanteckning,Dr. Anders Andersson,"### Subjektivt
-Mår utmärkt vid utskrivning. Ingen yrsel eller trötthet sedan dosen sänktes.
-### Objektivt
-Blodtrycket har legat stabilt mellan 128/76 och 132/80 under sista veckan.
-### Assessment
-Hypertoni, ortostatism utlöst av för hög dos Enalapril. Nu välreglerad på 5 mg x 1.
-### Planering
-Utskrives i stabilt skick. Recept på Enalapril 5 mg skickat. Hemremiss till vårdcentral för blodtrycks- och elstatuskontroll om 2 veckor."
-1980808-EFGH,Maria Berg,44,2026-05-02 09:00,Inläggningsanteckning,Dr. Erik Ek,"### Subjektivt
-44-årig kvinna som inläggs för utredning av uttalad anemi. Söker pga tilltagande trötthet, andfåddhet vid lätt ansträngning samt yrsel sedan två veckor. Ingen känd blödning.
-### Objektivt
-Påfallande blek i hud och slemhinnor. Blodtryck 110/70, puls 88. Buk mjuk och oöm, ingen palpabel mjälte eller lever.
-### Assessment
-Oklar mikrocytär anemi (Hb 85 g/L). Behöver utredas med avseende på järnbrist, malabsorption samt eventuell gastrointestinal blödningskälla.
-### Planering
-Inlägges. Beställer järnstatus, kobalamin, folat och celiaki-screening. Bokar gastroskopi och koloskopi. Blodtransfusion ej indicerad i nuläget då hon är cirkulatoriskt stabil. Startar peroralt järn (Niferex)."
-1980808-EFGH,Maria Berg,44,2026-05-03 11:30,Daganteckning,Ssk. Maria Nilsson,"### Aktuellt
-Tolererat Niferex-tabletten bra igår kväll. Fortsatt mycket trött men ingen nytillkommen yrsel i sittande. Blodtryck 108/68, puls 82."
-1980808-EFGH,Maria Berg,44,2026-05-05 10:15,Daganteckning,Dr. Erik Ek,"### Subjektivt
-Något piggare idag. Säger att orken känns aningen bättre.
-### Objektivt
-Provsvar visar uttalad järnbrist med S-Järn 5 umol/L och Ferritin < 10. Gastroskopi inplanerad till imorgon. Hb kontrolleras idag.
-### Assessment
-Järnbristanemi. Fynd talar starkt för järnbrist. Pågående peroral substitution.
-### Planering
-Fortsätt med Niferex 100 mg x 1. Avvakta gastroskopi imorgon."
-1980808-EFGH,Maria Berg,44,2026-05-06 14:30,Daganteckning,Dr. Erik Ek,"### Subjektivt
-Mår efter omständigheterna väl efter förmiddagens gastroskopi. Upplever inget obehag.
-### Objektivt
-Gastroskopi visade ett litet sår i duodenum (duodenalulcus), i övrigt normal slemhinna. Biopsier tagna för att utesluta H. pylori och celiaki.
-### Assessment
-Järnbristanemi sekundärt till blödande duodenalulcus.
-### Planering
-Insätter protonpumpshämmare (Omeprazol 20 mg x 1) för ulcusläkning. Fortsätter med järnsubstitution. Koloskopi avbokas då blödningskällan bedöms identifierad. Hb-kontroll om 3 dagar."
-1980808-EFGH,Maria Berg,44,2026-05-09 09:30,Daganteckning,Ssk. Maria Nilsson,"### Aktuellt
-Mår fint. Inga bukbesvär av Omeprazol eller Niferex. Hb har stigit till 95 g/L."
-1980808-EFGH,Maria Berg,44,2026-05-12 11:00,Daganteckning,Dr. Erik Ek,"### Subjektivt
-Upplever markant förbättring av orken. Ingen andfåddhet vid plan gång längre.
-### Objektivt
-Hb uppmäts till 105 g/L. Färg på hud och slemhinnor förbättrad.
-### Assessment
-God terapeutisk respons på järnsubstitution och syrahämning.
-### Planering
-Utskrivning planeras till den 16 maj. Fortsatt monitorering."
-1980808-EFGH,Maria Berg,44,2026-05-16 15:45,Slutanteckning,Dr. Erik Ek,"### Subjektivt
-Känner sig nästan helt återställd vid utskrivning. God aptit och normaliserad energinivå.
-### Objektivt
-Hb har stigit till 112 g/L vid utskrivningstestet. Stabil hemodynamik.
-### Assessment
-Järnbristanemi orsakad av duodenalulcus. Ulcus framgångsrikt behandlat med Omeprazol. Järndepåer under återuppbyggnad.
-### Planering
-Utskrives till hemmet. Fortsatt behandling med Omeprazol 20 mg dagligen i ytterligare 2 veckor, samt Niferex 100 mg dagligen i 3 månader. Remiss till vårdcentral för Hb-kontroll om 4 veckor."
+%JAID,%personnummer,Datum,Mallnamn,Vårdenhet,Yrkeskategori,Signerad av,Sökord,anteckning
+JAID001,197007071234,2026-05-01,DS Orto Inläggningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Inskrivningsorsak,Tilltagande ortostatisk yrsel vid känd hypertoni behandlad med Enalapril. Dosen höjdes för tre veckor sedan.
+JAID001,197007071234,2026-05-01,DS Orto Inläggningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Anamnes,"51-årig man med hypertoni sedan 8 år. Tidigare välreglerad på Enalapril 5 mg x 1. Ny dos 10 mg x 1 sedan 3 veckor. Inga tidigare hjärt-kärlhändelser. Rökfri. Alkohol sparsamt."
+JAID001,197007071234,2026-05-01,DS Orto Inläggningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Aktuella besvär,"Patienten beskriver tilltagande yrsel och ostadighet framför allt i samband med uppresning från säng eller stol. Besvären har kommit successivt efter doshöjning av Enalapril och är tydligast på morgonen innan frukost. Ingen synkope, inga övergående neurologiska bortfall och ingen aktuell huvudvärk.
+
+Han har fortsatt försöka promenera kortare sträckor i hemmet men har behövt stanna upp och hålla i sig vid flera tillfällen. Ingen bröstsmärta, hjärtklappning eller andnöd. Vätskeintaget uppges vara något sämre senaste dagarna men ingen feber, kräkning eller diarré."
+JAID001,197007071234,2026-05-01,DS Orto Inläggningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Allmäntillstånd,"Opåverkad. Ortostatisk yrsel vid uppresning. BT 148/92 liggande, 118/75 stående (>30 mmHg fall)."
+JAID001,197007071234,2026-05-01,DS Orto Inläggningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Bedömning,"Sammantaget talar anamnes och ortostatiskt blodtrycksfall för läkemedelsutlöst ortostatisk hypotoni efter nylig doshöjning av Enalapril. Patienten är cirkulatoriskt stabil i vila och neurologstatus är utan fokala bortfall, vilket gör stroke/TIA eller annan akut neurologisk orsak mindre sannolik.
+
+Behöver observation med upprepade blodtryckskontroller, vätskebalans och kontroll av elektrolyter/njurfunktion innan ny blodtrycksbehandling värderas. Ingen aktuell misstanke om akut koronart syndrom eller arytmi men telemetri bedöms rimligt första dygnet med tanke på yrselbilden."
+JAID001,197007071234,2026-05-01,DS Orto Inläggningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Planering,"Sätt ut Enalapril. BT-kontroller x 4/dygn. Elstatus och kreatinin i morgon. Telemetri. Bedömning imorgon för dosering."
+JAID002,197007071234,2026-05-03,DS Orto Daganteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Aktuella besvär,"Patienten mår tydligt bättre efter utsättning av Enalapril. Yrseln vid uppresning är kvar i lätt grad men betydligt mindre uttalad och han har kunnat gå till toaletten med stöd utan att behöva sätta sig ned. Sovit gott under natten och upplever sig piggare på morgonen.
+
+Ingen bröstsmärta, andnöd eller hjärtklappning. Han är motiverad att komma upp och röra sig mer men vill ta det stegvis eftersom han fortfarande känner viss osäkerhet vid snabb lägesändring. Äter och dricker utan illamående."
+JAID002,197007071234,2026-05-03,DS Orto Daganteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Allmäntillstånd,"Stabil gång. BT 135/80 liggande, 128/78 stående (7 mmHg fall)."
+JAID002,197007071234,2026-05-03,DS Orto Daganteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Bedömning,"Klinisk förbättring efter utsättning av Enalapril stärker misstanken om läkemedelsutlöst ortostatism. Ortostatiskt blodtrycksfall är nu klart mindre uttalat och patienten är hemodynamiskt stabil utan alarmsymtom.
+
+Blodtrycket ligger fortsatt acceptabelt men patienten har känd hypertoni och behöver sannolikt återinsättning i lägre dos när symtomen stabiliserats. Fortsatt kontroll av BT och njurfunktion rekommenderas för att undvika både recidiv av ortostatism och otillräcklig blodtrycksbehandling."
+JAID002,197007071234,2026-05-03,DS Orto Daganteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Planering,"Återinsätt Enalapril 5 mg x 1 (halva ursprungsdosen). Nytt elstatus om 2 dagar. Fortsatt BT-kontroll x 4/dygn."
+JAID003,197007071234,2026-05-08,DS Orto Daganteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Aktuella besvär,"Patienten uppger att yrseln nu har gått helt tillbaka. Han har promenerat obehindrat i korridoren flera gånger under dagen och klarar uppresning från stol utan ostadighetskänsla. Sömn och aptit är goda.
+
+Han känner sig i stort sett som vanligt och uttrycker önskemål om planering för hemgång om blodtrycket fortsatt håller sig stabilt. Ingen bröstsmärta, dyspné, synkope eller nytillkommen svaghet. Tolererar återinsatt lägre dos Enalapril utan besvär."
+JAID003,197007071234,2026-05-08,DS Orto Daganteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Allmäntillstånd,"Promenerar obehindrat. BT 132/78. Ortostastest negativt."
+JAID003,197007071234,2026-05-08,DS Orto Daganteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Bedömning,"Hypertonin förefaller nu välreglerad på Enalapril 5 mg x 1 utan återkomst av ortostatiska symtom. Ortostastest är negativt och patienten mobiliserar självständigt, vilket talar för att tidigare dos var för hög snarare än att annan bakomliggande orsak dominerar.
+
+Fortsatt stabil njurfunktion och elektrolytstatus stödjer att aktuell behandling kan bibehållas. Behöver dock hemkontroller och uppföljning via primärvård eftersom blodtrycket kan variera efter utskrivning och dosen kan behöva justeras över tid."
+JAID003,197007071234,2026-05-08,DS Orto Daganteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Planering,Planerar utskrivning till nästa vecka om BT håller sig stabilt. Hemkontroller BT morgon och kväll.
+JAID004,197007071234,2026-05-15,DS Orto Utskrivningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Inskrivningsorsak,Ortostatisk hypotoni vid behandlad hypertoni. Troligen läkemedelsorsakad av för hög Enalapril-dos.
+JAID004,197007071234,2026-05-15,DS Orto Utskrivningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Anamnes,Se inläggningsanteckning 2026-05-01. Hypertoni 8 år med Enalapril. Dosen höjdes nyligen vilket utlöste symtomen.
+JAID004,197007071234,2026-05-15,DS Orto Utskrivningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Allmäntillstånd,"BT vid utskrivning 129/78. Puls 68. Ortostastest negativt."
+JAID004,197007071234,2026-05-15,DS Orto Utskrivningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Bedömning,"Vårdtillfället bedöms ha orsakats av ortostatisk hypotoni utlöst av för hög Enalapril-dos. Symtomen gick tillbaka efter utsättning och har inte återkommit efter återinsättning i halverad dos. Patienten är vid utskrivning välmobiliserad och utan alarmsymtom.
+
+Blodtrycket är acceptabelt reglerat på Enalapril 5 mg x 1 och njurfunktion samt elektrolyter är stabila. Fortsatt uppföljning behövs i primärvården för BT-kontroll och eventuell framtida dosjustering, med tydliga råd att söka vid återkommande yrsel eller svimning."
+JAID004,197007071234,2026-05-15,DS Orto Utskrivningsanteckning läk,DS Ortopedi avd 4,Läkare,Anders Andersson,Planering,"Utskrives till hemmet. Enalapril 5 mg x 1 (recept expedierat). Remiss till husläkare för BT- och elstatuskontroll om 2 veckor. Kontakta oss om yrsel återkommer."
+JAID005,198008081234,2026-05-02,DS Med Inläggningsanteckning läk,DS Medicin akuten,Läkare,Erik Ek,Inskrivningsorsak,"Uttalad anemi Hb 85 g/L. Remiss från husläkare för utredning av oklar järnbristanemi."
+JAID005,198008081234,2026-05-02,DS Med Inläggningsanteckning läk,DS Medicin akuten,Läkare,Erik Ek,Anamnes,"44-årig kvinna utan känd tidigare sjuklighet. Normala menstruationer. Inga NSAID. Ej vegetarian. Sporadisk lätt uppkördhet men inga uttalade GI-symtom. Ingen känd blödning."
+JAID005,198008081234,2026-05-02,DS Med Inläggningsanteckning läk,DS Medicin akuten,Läkare,Erik Ek,Aktuella besvär,"Patienten söker på grund av tilltagande trötthet och nedsatt ork sedan cirka två månader. Hon blir andfådd vid lättare ansträngning, exempelvis trappgång eller promenad i snabbare tempo, och beskriver även yrsel samt hjärtklappning när hon pressar sig. Besvären har blivit mer påtagliga senaste två veckorna.
+
+Ingen känd synlig blödning, ingen melena och inga hematemeser. Menstruationerna uppges vara oförändrade. Hon har haft lätt uppkördhet och periodvis diffust obehag i övre delen av buken men ingen tydlig smärta. Ingen feber, viktnedgång eller nattliga svettningar."
+JAID005,198008081234,2026-05-02,DS Med Inläggningsanteckning läk,DS Medicin akuten,Läkare,Erik Ek,Allmäntillstånd,"Blek i hud och slemhinnor, opåverkad. Hb 85 g/L, MCV 72 fl, MCH lågt."
+JAID005,198008081234,2026-05-02,DS Med Inläggningsanteckning läk,DS Medicin akuten,Läkare,Erik Ek,Bedömning,"Mikrocytär anemi med lågt ferritin och lågt järn talar starkt för järnbristanemi. Symtombilden med successivt tilltagande trötthet och ansträngningsdyspné är förenlig med anemigraden. Patienten är cirkulatoriskt stabil och har i nuläget inget transfusionsbehov.
+
+Blödningskälla är ännu oklar. Gastrointestinal förlust behöver uteslutas, särskilt med tanke på diskreta övre GI-symtom och avsaknad av annan tydlig förklaring. Planeras därför för endoskopisk utredning samt kompletterande prover för malabsorption och annan bakomliggande orsak."
+JAID005,198008081234,2026-05-02,DS Med Inläggningsanteckning läk,DS Medicin akuten,Läkare,Erik Ek,Planering,"Starta Niferex 100 mg x 1 p.o. Beställ gastroskopi och koloskopi. Celiakiscreening. Hb-kontroll dagligen. Transfusion ej indicerad i nuläget då cirkulatoriskt stabil."
+JAID006,198008081234,2026-05-06,DS Med Daganteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Aktuella besvär,"Patienten mår efter omständigheterna bra efter förmiddagens gastroskopi. Hon beskriver lätt halsont efter undersökningen men ingen illamående, kräkning eller buksmärta. Orken är fortsatt nedsatt men något bättre jämfört med inkomst.
+
+Hon har tolererat peroralt järn utan större besvär och har kunnat äta lättare måltid efter undersökningen. Inga tecken till nytillkommen blödning. Patienten är informerad om preliminärt fynd och inväntar biopsi- och provsvar."
+JAID006,198008081234,2026-05-06,DS Med Daganteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Buk,"Gastroskopi: Litet ulkus duodenum pars I. Biopsier tagna (H. pylori och celiaki). Övrig slemhinna ua."
+JAID006,198008081234,2026-05-06,DS Med Daganteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Bedömning,"Gastroskopifynd med duodenalulkus ger sannolik förklaring till järnbristanemin och talar för kronisk gastrointestinal blodförlust. Patienten är fortsatt stabil utan tecken till pågående större blödning och Hb ligger ungefär oförändrat.
+
+Behöver syrahämmande behandling och fortsatt järnsubstitution. Biopsier inväntas för H. pylori och celiaki, vilket kan påverka fortsatt behandling. Koloskopi kan avvakta i nuläget om kliniskt förlopp och provsvar fortsatt stödjer identifierad blödningskälla."
+JAID006,198008081234,2026-05-06,DS Med Daganteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Planering,"Insätt Omeprazol 20 mg x 1. Fortsätt Niferex 100 mg x 1. Avvakta biopsivar (H. pylori, celiaki). Hb-kontroll om 3 dagar."
+JAID007,198008081234,2026-05-12,DS Med Daganteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Aktuella besvär,"Patienten upplever tydlig förbättring av orken sedan inkomst. Hon klarar nu gång i korridoren utan andfåddhet vid plan mark och behöver färre vilopauser. Fortfarande viss trötthet framåt eftermiddagen men klart positiv trend.
+
+Inga buksmärtor, ingen melena och inget illamående av pågående behandling. Hon tolererar järn och protonpumpshämmare väl. Har fått information om provsvar och är införstådd med planerad eradikeringsbehandling vid H. pylori."
+JAID007,198008081234,2026-05-12,DS Med Daganteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Allmäntillstånd,"Färg på hud och slemhinnor förbättrad. Hb 105 g/L (stigit från 85 vid inläggning)."
+JAID007,198008081234,2026-05-12,DS Med Daganteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Bedömning,"God klinisk och laboratoriemässig behandlingsrespons med stigande Hb och förbättrad ork. H. pylori är påvisad och bedöms sannolikt ha bidragit till duodenalulkuset och därmed järnbristanemin.
+
+Fortsatt järnsubstitution behövs för att återställa depåerna även efter att Hb förbättrats. Eradikeringsbehandling bör ges enligt rutin och följas upp efter avslutad kur. Om fortsatt Hb-stegring och stabilt mående kan utskrivning planeras inom kort."
+JAID007,198008081234,2026-05-12,DS Med Daganteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Planering,"Lägg till H. pylori-eradikeringskur (Amoxicillin + Klaritromycin + Omeprazol x 2 i 7 dagar). Fortsätt Niferex. Planerar utskrivning om 4 dagar."
+JAID008,198008081234,2026-05-16,DS Med Utskrivningsanteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Inskrivningsorsak,"Järnbristanemi pga blödande duodenalulkus med H. pylori."
+JAID008,198008081234,2026-05-16,DS Med Utskrivningsanteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Anamnes,Se inläggningsanteckning 2026-05-02. Ingen känd GI-sjukdom tidigare. H. pylori-infektion nu bekräftad.
+JAID008,198008081234,2026-05-16,DS Med Utskrivningsanteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Allmäntillstånd,"Hemodynamiskt stabil. Hb vid utskrivning 112 g/L (stigit från 85)."
+JAID008,198008081234,2026-05-16,DS Med Utskrivningsanteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Bedömning,"Järnbristanemi sekundärt till duodenalulkus med H. pylori bedöms vara huvuddiagnos. Patienten har svarat väl på järnsubstitution, protonpumpshämmare och eradikeringsbehandling med stigande Hb, förbättrad ork och frånvaro av tecken till fortsatt blödning.
+
+Ulkuset bedöms vara under läkning men järndepåerna är sannolikt fortsatt låga och behöver byggas upp över tid. Uppföljning i primärvård behövs för kontroll av Hb/ferritin samt verifiering av H. pylori-eradikering. Patienten informerad om att söka akut vid melena, blodiga kräkningar, svimning eller tilltagande buksmärta."
+JAID008,198008081234,2026-05-16,DS Med Utskrivningsanteckning läk,DS Medicin avd 12,Läkare,Erik Ek,Planering,"Utskrives. Omeprazol 20 mg x 1 i 6 veckor. Niferex 100 mg x 1 i 3 månader. Remiss till husläkare för Hb-kontroll och H. pylori-kontroll (utandningstest) om 4 veckor."

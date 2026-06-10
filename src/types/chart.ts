@@ -1,5 +1,6 @@
 export interface ChartNote {
   id: string;
+  noteId?: string;
   patientId: string;
   patientName?: string;
   patientAge?: number;
@@ -7,6 +8,8 @@ export interface ChartNote {
   noteType: string;
   author: string;
   content: string;
+  ward?: string;       // Vårdenhet
+  profession?: string; // Yrkeskategori
 }
 
 export interface ParseWarning {

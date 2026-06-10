@@ -1,7 +1,7 @@
 import ExcelJS from 'exceljs';
 import { ParsedChartFile, ParsedChartNote, ParseWarning, LabValue, Medication } from 'src/types/chart';
 import { ChartFileParser } from './index';
-import { detectColumnMapping, mapRowToNote, mapRowToLabValue, mapRowToMedication } from './aliasMatcher';
+import { detectColumnMapping, mapRowToNote, mapRowToLabValue, mapRowToMedication, groupSokordRows } from './aliasMatcher';
 
 export class XlsxParser implements ChartFileParser {
   canParse(file: File): boolean {
@@ -91,6 +91,8 @@ export class XlsxParser implements ChartFileParser {
     const labValues: LabValue[] = [];
     const medications: Medication[] = [];
 
+    // Collect all data rows first so we can branch on format
+    const allRows: Record<string, unknown>[] = [];
     worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
       if (rowNumber === 1) return; // Skip header row
 
@@ -100,47 +102,61 @@ export class XlsxParser implements ChartFileParser {
         rawRow[header] = this.getCellValueAsString(cell.value);
       });
 
-      // Skip if row is completely empty
-      const rowValues = Object.values(rawRow).filter(v => v !== null && v !== undefined && String(v).trim() !== '');
-      if (rowValues.length === 0) return;
-
-      const parsedRow = mapRowToNote(rawRow, mapping, rowNumber);
-
-      if (parsedRow.note.content) {
-        notes.push(parsedRow);
+      // Skip completely empty rows
+      const rowValues = Object.values(rawRow).filter(
+        v => v !== null && v !== undefined && String(v).trim() !== ''
+      );
+      if (rowValues.length > 0) {
+        allRows.push(rawRow);
       }
+    });
 
-      // Extract split date and time for lab/medication association
-      let rowDate = '';
-      let rowTime = '00:00';
-      const dt = parsedRow.note.dateTime;
-      if (dt) {
-        const parts = dt.split(/[\sT]/);
-        rowDate = parts[0] || '';
-        if (parts[1]) {
-          const timeParts = parts[1].split(':');
-          if (timeParts.length >= 2) {
-            rowTime = `${timeParts[0]}:${timeParts[1]}`;
-          } else {
-            rowTime = parts[1].substring(0, 5);
+    // -----------------------------------------------------------------------
+    // NEW FORMAT: sökord-based export (one row per section keyword)
+    // -----------------------------------------------------------------------
+    if (mapping.sokord) {
+      const { notes: sokordNotes, warnings: sokordWarnings } = groupSokordRows(allRows, mapping);
+      notes.push(...sokordNotes);
+      warnings.push(...sokordWarnings);
+
+    // -----------------------------------------------------------------------
+    // OLD FORMAT: one row per complete journal note
+    // -----------------------------------------------------------------------
+    } else {
+      allRows.forEach((rawRow, index) => {
+        const rowNumber = index + 2; // 1-indexed, +1 for header
+        const parsedRow = mapRowToNote(rawRow, mapping, rowNumber);
+
+        if (parsedRow.note.content) {
+          notes.push(parsedRow);
+        }
+
+        // Extract split date and time for lab/medication association
+        let rowDate = '';
+        let rowTime = '00:00';
+        const dt = parsedRow.note.dateTime;
+        if (dt) {
+          const parts = dt.split(/[\sT]/);
+          rowDate = parts[0] || '';
+          if (parts[1]) {
+            const timeParts = parts[1].split(':');
+            if (timeParts.length >= 2) {
+              rowTime = `${timeParts[0]}:${timeParts[1]}`;
+            } else {
+              rowTime = parts[1].substring(0, 5);
+            }
           }
         }
-      }
 
-      // Extract lab values from this row
-      const lab = mapRowToLabValue(rawRow, mapping, parsedRow.note.patientId, rowDate, rowTime);
-      if (lab) {
-        labValues.push(lab);
-      }
+        const lab = mapRowToLabValue(rawRow, mapping, parsedRow.note.patientId, rowDate, rowTime);
+        if (lab) labValues.push(lab);
 
-      // Extract medications from this row
-      const med = mapRowToMedication(rawRow, mapping, parsedRow.note.patientId, rowDate);
-      if (med) {
-        medications.push(med);
-      }
+        const med = mapRowToMedication(rawRow, mapping, parsedRow.note.patientId, rowDate);
+        if (med) medications.push(med);
 
-      warnings.push(...parsedRow.warnings);
-    });
+        warnings.push(...parsedRow.warnings);
+      });
+    }
 
     return {
       fileName: file.name,
@@ -164,7 +180,13 @@ export class XlsxParser implements ChartFileParser {
         return value.richText.map(rt => rt.text || '').join('');
       }
       if (value instanceof Date) {
-        return value.toISOString();
+        // Format date-only values as YYYY-MM-DD to avoid midnight UTC ISO strings
+        // that would display as timestamps and cause grouping mismatches.
+        const iso = value.toISOString();
+        if (iso.endsWith('T00:00:00.000Z')) {
+          return iso.substring(0, 10); // Return only the date part
+        }
+        return iso.substring(0, 16).replace('T', ' '); // Return date + time HH:MM
       }
       if ('text' in value) {
         return String(value.text);

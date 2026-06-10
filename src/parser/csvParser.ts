@@ -1,7 +1,7 @@
 import Papa from 'papaparse';
 import { ParsedChartFile, ParsedChartNote, ParseWarning, LabValue, Medication } from 'src/types/chart';
 import { ChartFileParser } from './index';
-import { detectColumnMapping, mapRowToNote, mapRowToLabValue, mapRowToMedication } from './aliasMatcher';
+import { detectColumnMapping, mapRowToNote, mapRowToLabValue, mapRowToMedication, groupSokordRows } from './aliasMatcher';
 
 export class CsvParser implements ChartFileParser {
   canParse(file: File): boolean {
@@ -32,7 +32,7 @@ export class CsvParser implements ChartFileParser {
               return;
             }
 
-            // Detect mappings
+            // Detect column mappings
             const mapping = detectColumnMapping(columns);
 
             if (!mapping.content) {
@@ -46,7 +46,7 @@ export class CsvParser implements ChartFileParser {
               return;
             }
 
-            // Add warnings for unmapped columns or missing non-critical columns
+            // Warn about missing non-critical columns
             for (const key of Object.keys(mapping) as Array<keyof typeof mapping>) {
               if (!mapping[key]) {
                 if (key === 'patientId') {
@@ -77,53 +77,70 @@ export class CsvParser implements ChartFileParser {
             const labValues: LabValue[] = [];
             const medications: Medication[] = [];
 
-            // Parse rows
-            results.data.forEach((row: any, index) => {
-              const rowIndex = index + 2; // 1-indexed, +1 for header row
-              
-              // Skip if row is completely empty
-              const rowValues = Object.values(row).filter(v => v !== null && v !== undefined && String(v).trim() !== '');
-              if (rowValues.length === 0) return;
+            // ----------------------------------------------------------------
+            // NEW FORMAT: sökord-based export (one row per section keyword)
+            // Detected by presence of a mapped 'sokord' column.
+            // ----------------------------------------------------------------
+            if (mapping.sokord) {
+              const { notes: sokordNotes, warnings: sokordWarnings } = groupSokordRows(
+                results.data as Record<string, unknown>[],
+                mapping
+              );
+              notes.push(...sokordNotes);
+              warnings.push(...sokordWarnings);
 
-              const parsedRow = mapRowToNote(row, mapping, rowIndex);
-              
-              // If the row has empty content, we log a warning but skip rendering it in the main list
-              if (parsedRow.note.content) {
-                notes.push(parsedRow);
-              }
-              
-              // Extract split date and time for lab/medication association
-              let rowDate = '';
-              let rowTime = '00:00';
-              const dt = parsedRow.note.dateTime;
-              if (dt) {
-                const parts = dt.split(/[\sT]/);
-                rowDate = parts[0] || '';
-                if (parts[1]) {
-                  const timeParts = parts[1].split(':');
-                  if (timeParts.length >= 2) {
-                    rowTime = `${timeParts[0]}:${timeParts[1]}`;
-                  } else {
-                    rowTime = parts[1].substring(0, 5);
+            // ----------------------------------------------------------------
+            // OLD FORMAT: one row per complete journal note
+            // ----------------------------------------------------------------
+            } else {
+              results.data.forEach((row: any, index) => {
+                const rowIndex = index + 2; // 1-indexed, +1 for header row
+
+                // Skip completely empty rows
+                const rowValues = Object.values(row).filter(
+                  v => v !== null && v !== undefined && String(v).trim() !== ''
+                );
+                if (rowValues.length === 0) return;
+
+                const parsedRow = mapRowToNote(row, mapping, rowIndex);
+
+                if (parsedRow.note.content) {
+                  notes.push(parsedRow);
+                }
+
+                // Extract split date and time for lab/medication association
+                let rowDate = '';
+                let rowTime = '00:00';
+                const dt = parsedRow.note.dateTime;
+                if (dt) {
+                  const parts = dt.split(/[\sT]/);
+                  rowDate = parts[0] || '';
+                  if (parts[1]) {
+                    const timeParts = parts[1].split(':');
+                    if (timeParts.length >= 2) {
+                      rowTime = `${timeParts[0]}:${timeParts[1]}`;
+                    } else {
+                      rowTime = parts[1].substring(0, 5);
+                    }
                   }
                 }
-              }
 
-              // Extract lab values from this row
-              const lab = mapRowToLabValue(row, mapping, parsedRow.note.patientId, rowDate, rowTime);
-              if (lab) {
-                labValues.push(lab);
-              }
+                // Extract lab values from this row
+                const lab = mapRowToLabValue(row, mapping, parsedRow.note.patientId, rowDate, rowTime);
+                if (lab) {
+                  labValues.push(lab);
+                }
 
-              // Extract medications from this row
-              const med = mapRowToMedication(row, mapping, parsedRow.note.patientId, rowDate);
-              if (med) {
-                medications.push(med);
-              }
+                // Extract medications from this row
+                const med = mapRowToMedication(row, mapping, parsedRow.note.patientId, rowDate);
+                if (med) {
+                  medications.push(med);
+                }
 
-              // Collect warnings from each row
-              warnings.push(...parsedRow.warnings);
-            });
+                // Collect warnings from each row
+                warnings.push(...parsedRow.warnings);
+              });
+            }
 
             resolve({
               fileName: file.name,

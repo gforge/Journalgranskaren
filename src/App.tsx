@@ -37,6 +37,7 @@ import {
   Science as ScienceIcon,
 } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+import { useMatch, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import { SecurityNotice } from 'components/SecurityNotice';
@@ -61,6 +62,13 @@ const sanitizeDose = (val: string): string => {
 
 export default function App() {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const patientRouteMatch = useMatch('/patients/:patientId/:tab');
+  const patientRouteWithoutTabMatch = useMatch('/patients/:patientId');
+  const routePatientId = patientRouteMatch?.params.patientId ?? patientRouteWithoutTabMatch?.params.patientId ?? null;
+  const routeTab = patientRouteMatch?.params.tab;
+  const activeTab: 'notes' | 'medications' | 'labs' =
+    routeTab === 'medications' || routeTab === 'labs' || routeTab === 'notes' ? routeTab : 'notes';
 
   // App settings & Reviewer identity state
   const [reviewerName, setReviewerName] = useState<string>('');
@@ -71,14 +79,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Navigation states
-  const [activePatientId, setActivePatientId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'notes' | 'medications' | 'labs'>('notes');
-
-  // Reset tab when active patient changes
-  useEffect(() => {
-    setActiveTab('notes');
-  }, [activePatientId]);
+  const activePatientId = parsedFile ? routePatientId : null;
 
   // Note display filters
   const [noteTypeFilter, setNoteTypeFilter] = useState<string>('ALL');
@@ -138,7 +139,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     setParsedFile(null);
-    setActivePatientId(null);
+    navigate('/');
 
     try {
       const parser = getParserForFile(file);
@@ -148,6 +149,7 @@ export default function App() {
 
       const result = await parser.parse(file);
       setParsedFile(result);
+      navigate('/');
 
       // Audit Log File Import Action
       await addAuditLog({
@@ -167,7 +169,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     setParsedFile(null);
-    setActivePatientId(null);
+    navigate('/');
 
     try {
       const base = (import.meta as any).env.BASE_URL || '/';
@@ -187,6 +189,7 @@ export default function App() {
 
       const result = await parser.parse(file);
       setParsedFile(result);
+      navigate('/');
 
       // Audit Log File Import Action
       await addAuditLog({
@@ -205,12 +208,12 @@ export default function App() {
   const handleClear = () => {
     setParsedFile(null);
     setError(null);
-    setActivePatientId(null);
+    navigate('/');
   };
 
   // Open a specific patient's chart
   const handleOpenChart = async (patientId: string) => {
-    setActivePatientId(patientId);
+    navigate(`/patients/${encodeURIComponent(patientId)}/notes`);
     setNoteTypeFilter('ALL');
     setAuthorFilter('ALL');
 
@@ -225,12 +228,12 @@ export default function App() {
   };
 
   const handleBackToOverview = () => {
-    setActivePatientId(null);
+    navigate('/');
   };
 
   const handleTabChange = async (newTab: 'notes' | 'medications' | 'labs') => {
-    setActiveTab(newTab);
     if (activePatientId) {
+      navigate(`/patients/${encodeURIComponent(activePatientId)}/${newTab}`);
       await addAuditLog({
         timestamp: new Date().toISOString(),
         reviewerName,
@@ -498,7 +501,7 @@ export default function App() {
       <AppBar position="static" elevation={0} sx={{ borderBottom: '1px solid', borderColor: 'divider', bgcolor: 'background.paper', color: 'text.primary' }}>
         <Toolbar variant="dense">
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: '-0.02em', color: 'primary.main' }}>
-            {t('appName')} <Typography component="span" variant="caption" sx={{ fontWeight: 400, color: 'text.secondary', ml: 1, display: { xs: 'none', sm: 'inline' } }}>{t('appSubtitle')}</Typography>
+            {t('appName')}
           </Typography>
           
           {reviewerName && (

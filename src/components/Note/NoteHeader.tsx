@@ -1,10 +1,26 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
 
 export interface NoteHeaderProps {
   type: string;
   dateTime: string;
   author: string;
+}
+
+/**
+ * Formats a dateTime string for display in the note header.
+ * Shows only the date when the time component is midnight (i.e. the source
+ * data had no time information), otherwise shows date + time.
+ */
+function formatNoteDateTime(raw: string): string {
+  const d = dayjs(raw);
+  if (!d.isValid()) return raw; // Unparseable: show as-is
+  // If time is exactly 00:00 (midnight), the source likely had date-only data
+  if (d.hour() === 0 && d.minute() === 0 && d.second() === 0) {
+    return d.format('YYYY-MM-DD');
+  }
+  return d.format('YYYY-MM-DD HH:mm');
 }
 
 export const NoteHeader = ({ type, dateTime, author }: NoteHeaderProps) => {
@@ -13,7 +29,8 @@ export const NoteHeader = ({ type, dateTime, author }: NoteHeaderProps) => {
   const displayType = type === 'Note' ? t('defaultNoteType') : type;
   const displayAuthor = author === 'Unspecified' ? t('unspecifiedAuthor') : author;
 
-  const metaText = dateTime ? `${dateTime} · ${displayAuthor}` : displayAuthor;
+  const formattedDate = dateTime ? formatNoteDateTime(dateTime) : '';
+  const metaText = formattedDate ? `${formattedDate} · ${displayAuthor}` : displayAuthor;
 
   return (
     <Box

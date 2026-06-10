@@ -147,6 +147,11 @@ export const PatientOverview = ({
     return rows;
   }, [notes, reviewStatuses, t]);
 
+  const hasPatientNames = useMemo(
+    () => patientData.some((row) => row.name !== t('unknownPatient')),
+    [patientData, t]
+  );
+
   const handleRequestSort = (field: SortField) => {
     const isAsc = sortField === field && sortOrder === 'asc';
     setSortOrder(isAsc ? 'desc' : 'asc');
@@ -179,12 +184,12 @@ export const PatientOverview = ({
   }, [patientData, sortField, sortOrder]);
 
   return (
-    <Box sx={{ maxWidth: '900px', mx: 'auto', width: '100%', mb: 4 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexWrap: 'wrap', gap: 2 }}>
+    <Box sx={{ maxWidth: '1000px', mx: 'auto', width: '100%', mb: 4 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexWrap: 'wrap', gap: 1.5 }}>
         <Typography variant="h5" sx={{ fontWeight: 700, color: 'text.primary' }}>
           {t('overviewHeader')}
         </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', flexWrap: 'wrap', gap: 1 }}>
           {checkingIntegrity ? (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary' }}>
               <CircularProgress size={16} color="inherit" />
@@ -229,7 +234,7 @@ export const PatientOverview = ({
             color="primary"
             startIcon={<DownloadIcon />}
             onClick={downloadAuditLogsCSV}
-            sx={{ borderRadius: 2, fontWeight: 600 }}
+            sx={{ borderRadius: 2, fontWeight: 600, whiteSpace: 'nowrap' }}
           >
             {t('exportLogsBtn')}
           </Button>
@@ -237,30 +242,20 @@ export const PatientOverview = ({
       </Box>
 
       <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
-        <Table aria-label="patient table">
+        <Table aria-label="patient table" size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead sx={{ bgcolor: 'rgba(0, 0, 0, 0.02)' }}>
             <TableRow>
-              <TableCell>
+              <TableCell sx={{ width: '34%' }}>
                 <TableSortLabel
-                  active={sortField === 'id'}
-                  direction={sortField === 'id' ? sortOrder : 'asc'}
-                  onClick={() => handleRequestSort('id')}
+                  active={sortField === (hasPatientNames ? 'name' : 'id')}
+                  direction={sortField === (hasPatientNames ? 'name' : 'id') ? sortOrder : 'asc'}
+                  onClick={() => handleRequestSort(hasPatientNames ? 'name' : 'id')}
                   sx={{ fontWeight: 600 }}
                 >
-                  Patient ID (Personnummer)
+                  {hasPatientNames ? t('patientName') : 'Patient ID'}
                 </TableSortLabel>
               </TableCell>
-              <TableCell>
-                <TableSortLabel
-                  active={sortField === 'name'}
-                  direction={sortField === 'name' ? sortOrder : 'asc'}
-                  onClick={() => handleRequestSort('name')}
-                  sx={{ fontWeight: 600 }}
-                >
-                  {t('patientName')}
-                </TableSortLabel>
-              </TableCell>
-              <TableCell align="center">
+              <TableCell align="center" sx={{ width: 72 }}>
                 <TableSortLabel
                   active={sortField === 'age'}
                   direction={sortField === 'age' ? sortOrder : 'asc'}
@@ -270,7 +265,7 @@ export const PatientOverview = ({
                   {t('patientAge')}
                 </TableSortLabel>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="center" sx={{ width: 118 }}>
                 <TableSortLabel
                   active={sortField === 'notesCount'}
                   direction={sortField === 'notesCount' ? sortOrder : 'asc'}
@@ -280,7 +275,7 @@ export const PatientOverview = ({
                   {t('notesCount')}
                 </TableSortLabel>
               </TableCell>
-              <TableCell>
+              <TableCell sx={{ width: 138 }}>
                 <TableSortLabel
                   active={sortField === 'date'}
                   direction={sortField === 'date' ? sortOrder : 'asc'}
@@ -290,7 +285,7 @@ export const PatientOverview = ({
                   {t('dateSpan')}
                 </TableSortLabel>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="center" sx={{ width: 104 }}>
                 <TableSortLabel
                   active={sortField === 'status'}
                   direction={sortField === 'status' ? sortOrder : 'asc'}
@@ -300,19 +295,31 @@ export const PatientOverview = ({
                   {t('status')}
                 </TableSortLabel>
               </TableCell>
-              <TableCell align="right" sx={{ fontWeight: 600 }}>{t('actions')}</TableCell>
+              <TableCell align="right" sx={{ width: 76, fontWeight: 600 }}>{t('actions')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {sortedPatients.map((row) => (
               <TableRow key={row.id} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row" sx={{ fontFamily: 'monospace', fontWeight: 500 }}>
-                  {row.id}
+                <TableCell component="th" scope="row" sx={{ overflow: 'hidden' }}>
+                  {hasPatientNames ? (
+                    <>
+                      <Typography variant="body2" sx={{ fontWeight: 600, overflowWrap: 'anywhere', lineHeight: 1.35 }}>
+                        {row.name}
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', fontFamily: 'monospace', overflowWrap: 'anywhere', lineHeight: 1.25 }}>
+                        {row.id}
+                      </Typography>
+                    </>
+                  ) : (
+                    <Typography variant="body2" sx={{ fontWeight: 600, fontFamily: 'monospace', overflowWrap: 'anywhere', lineHeight: 1.35 }}>
+                      {row.id}
+                    </Typography>
+                  )}
                 </TableCell>
-                <TableCell>{row.name}</TableCell>
                 <TableCell align="center">{row.age}</TableCell>
                 <TableCell align="center">{row.notesCount}</TableCell>
-                <TableCell>{row.dateRangeStr}</TableCell>
+                <TableCell sx={{ overflowWrap: 'anywhere' }}>{row.dateRangeStr}</TableCell>
                 <TableCell align="center">
                   <Tooltip
                     title={row.statusComment ? `${t('comment')}: ${row.statusComment}` : ''}
@@ -336,7 +343,7 @@ export const PatientOverview = ({
                   </Tooltip>
                 </TableCell>
                 <TableCell align="right">
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 0.5 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 0.25 }}>
                     <Tooltip title={t('openChart')}>
                       <IconButton size="small" color="primary" onClick={() => onOpenChart(row.id)}>
                         <OpenInNewIcon fontSize="small" />

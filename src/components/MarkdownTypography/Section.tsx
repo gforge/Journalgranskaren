@@ -37,7 +37,7 @@ export const Section = ({
   const nonEmptyContent = content.filter((l) => l.trim() !== '');
   const [expanded, setExpanded] = useState(true);
 
-  const isFlattenable = nonEmptyContent.length === 0 && sections.length === 1;
+  const isFlattenable = title !== 'Status' && nonEmptyContent.length === 0 && sections.length === 1;
   if (isFlattenable) {
     const child = sections[0];
     const childTitle = child.header.replace(/^#+\s*/, '');

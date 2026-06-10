@@ -1,83 +1,103 @@
 Personnummer,Namn,Ålder,Tidpunkt,Kategori,Skribent,Journaltext
-1970707-ABCD,Anders Svensson,51,2026-05-01 10:15,Inläggningsanteckning,Dr. Anders Andersson,"### Subjektivt
+1970707-ABCD,Anders Svensson,51,2026-05-01 10:15,Inläggningsanteckning,Dr. Anders Andersson,"### Aktuellt
 51-årig man som söker för uppföljning av hypertoni samt tilltagande yrsel sedan en vecka. Upplever att det snurrar när han reser sig upp snabbt. Ingen bröstsmärta eller andnöd.
-### Objektivt
-Blodtryck mäts till 142/88. Puls reguljär, 72. Inga blåsljud på hjärtat. Lungor auskulteras utan anmärkning.
-### Assessment
+### Status
+#### Allmäntillstånd
+Opåverkad. Ortostatisk yrsel vid uppresning.
+#### Hjärta
+Puls reguljär, 72. Inga blåsljud. BT 142/88.
+#### Lungor
+Auskulteras utan anmärkning.
+### Bedömning
 Hypertoni med ortostatisk yrsel, misstänkt överdosering eller biverkan av Enalapril efter nyligen gjord doshöjning. Inlägges för observation och justering av medicinering.
 ### Planering
 Inlägges på avd 4. Blodtryckskontroller x 4. Sätt ut Enalapril tills vidare. Ta elstatus och CRP imorgon bitti."
 1970707-ABCD,Anders Svensson,51,2026-05-02 08:30,Daganteckning,Ssk. Karin Larsson,"### Aktuellt
 Sovit gott under natten. Ingen yrsel i liggande, men känner sig fortfarande lite ostadig vid mobilisering till handfatet. Blodtryck på morgonen 138/82."
-1970707-ABCD,Anders Svensson,51,2026-05-03 09:15,Daganteckning,Dr. Anders Andersson,"### Subjektivt
+1970707-ABCD,Anders Svensson,51,2026-05-03 09:15,Daganteckning,Dr. Anders Andersson,"### Aktuellt
 Mår bättre idag. Betydligt mindre yrsel vid uppstigning.
-### Objektivt
-Stabil gång. Blodtryck 135/80. Puls 68. Elstatus visar normalt kalium och kreatinin.
-### Assessment
+### Status
+#### Allmäntillstånd
+Stabil gång. Mindre yrsel vid uppstigning.
+#### Hjärta
+Blodtryck 135/80. Puls 68.
+#### Övrigt
+Elstatus visar normalt kalium och kreatinin.
+### Bedömning
 Förbättring efter utsättning av Enalapril. Blodtrycket stabilt.
 ### Planering
 Återinsätter Enalapril i lägre dos, 5 mg x 1 (tidigare 10 mg x 1). Nytt elstatus om två dagar."
 1970707-ABCD,Anders Svensson,51,2026-05-05 08:45,Daganteckning,Ssk. Karin Larsson,"### Aktuellt
 Patienten är uppe och går i korridoren utan problem. Ingen yrsel rapporterad efter återinsättandet av Enalapril 5 mg. Blodtryck 132/78."
-1970707-ABCD,Anders Svensson,51,2026-05-08 08:30,Daganteckning,Dr. Anders Andersson,"### Subjektivt
+1970707-ABCD,Anders Svensson,51,2026-05-08 08:30,Daganteckning,Dr. Anders Andersson,"### Aktuellt
 Känner sig helt återställd. Ingen yrsel överhuvudtaget. Promenerar obehindrat.
-### Objektivt
-Blodtryck stabilt runt 130/80 mmHg. Puls 70. Prover visar stabilt kalium och kreatinin.
-### Assessment
+### Status
+#### Allmäntillstånd
+Promenerar obehindrat.
+#### Hjärta
+Blodtryck stabilt runt 130/80 mmHg. Puls 70.
+#### Övrigt
+Prover visar stabilt kalium och kreatinin.
+### Bedömning
 Välreglerat blodtryck på justerad Enalaprildos utan ortostatiska besvär.
 ### Planering
 Planerar för utskrivning nästa vecka om blodtrycket ligger kvar på denna nivå. Kontrollera blodtryck morgon och kväll."
 1970707-ABCD,Anders Svensson,51,2026-05-11 10:00,Daganteckning,Ssk. Karin Larsson,"### Aktuellt
 Allt väl. Trycket 128/78 på morgonen. Patienten ser fram emot utskrivning."
-1970707-ABCD,Anders Svensson,51,2026-05-15 14:00,Slutanteckning,Dr. Anders Andersson,"### Subjektivt
+1970707-ABCD,Anders Svensson,51,2026-05-15 14:00,Slutanteckning,Dr. Anders Andersson,"### Aktuellt
 Mår utmärkt vid utskrivning. Ingen yrsel eller trötthet sedan dosen sänktes.
-### Objektivt
+### Status
 Blodtrycket har legat stabilt mellan 128/76 och 132/80 under sista veckan.
-### Assessment
+### Bedömning
 Hypertoni, ortostatism utlöst av för hög dos Enalapril. Nu välreglerad på 5 mg x 1.
 ### Planering
 Utskrives i stabilt skick. Recept på Enalapril 5 mg skickat. Hemremiss till vårdcentral för blodtrycks- och elstatuskontroll om 2 veckor."
-1980808-EFGH,Maria Berg,44,2026-05-02 09:00,Inläggningsanteckning,Dr. Erik Ek,"### Subjektivt
+1980808-EFGH,Maria Berg,44,2026-05-02 09:00,Inläggningsanteckning,Dr. Erik Ek,"### Aktuellt
 44-årig kvinna som inläggs för utredning av uttalad anemi. Söker pga tilltagande trötthet, andfåddhet vid lätt ansträngning samt yrsel sedan två veckor. Ingen känd blödning.
-### Objektivt
-Påfallande blek i hud och slemhinnor. Blodtryck 110/70, puls 88. Buk mjuk och oöm, ingen palpabel mjälte eller lever.
-### Assessment
+### Status
+#### Allmäntillstånd
+Påfallande blek i hud och slemhinnor.
+#### Hjärta
+Blodtryck 110/70, puls 88.
+#### Buk
+Mjuk och oöm, ingen palpabel mjälte eller lever.
+### Bedömning
 Oklar mikrocytär anemi (Hb 85 g/L). Behöver utredas med avseende på järnbrist, malabsorption samt eventuell gastrointestinal blödningskälla.
 ### Planering
 Inlägges. Beställer järnstatus, kobalamin, folat och celiaki-screening. Bokar gastroskopi och koloskopi. Blodtransfusion ej indicerad i nuläget då hon är cirkulatoriskt stabil. Startar peroralt järn (Niferex)."
 1980808-EFGH,Maria Berg,44,2026-05-03 11:30,Daganteckning,Ssk. Maria Nilsson,"### Aktuellt
 Tolererat Niferex-tabletten bra igår kväll. Fortsatt mycket trött men ingen nytillkommen yrsel i sittande. Blodtryck 108/68, puls 82."
-1980808-EFGH,Maria Berg,44,2026-05-05 10:15,Daganteckning,Dr. Erik Ek,"### Subjektivt
+1980808-EFGH,Maria Berg,44,2026-05-05 10:15,Daganteckning,Dr. Erik Ek,"### Aktuellt
 Något piggare idag. Säger att orken känns aningen bättre.
-### Objektivt
+### Status
 Provsvar visar uttalad järnbrist med S-Järn 5 umol/L och Ferritin < 10. Gastroskopi inplanerad till imorgon. Hb kontrolleras idag.
-### Assessment
+### Bedömning
 Järnbristanemi. Fynd talar starkt för järnbrist. Pågående peroral substitution.
 ### Planering
 Fortsätt med Niferex 100 mg x 1. Avvakta gastroskopi imorgon."
-1980808-EFGH,Maria Berg,44,2026-05-06 14:30,Daganteckning,Dr. Erik Ek,"### Subjektivt
+1980808-EFGH,Maria Berg,44,2026-05-06 14:30,Daganteckning,Dr. Erik Ek,"### Aktuellt
 Mår efter omständigheterna väl efter förmiddagens gastroskopi. Upplever inget obehag.
-### Objektivt
+### Status
 Gastroskopi visade ett litet sår i duodenum (duodenalulcus), i övrigt normal slemhinna. Biopsier tagna för att utesluta H. pylori och celiaki.
-### Assessment
+### Bedömning
 Järnbristanemi sekundärt till blödande duodenalulcus.
 ### Planering
 Insätter protonpumpshämmare (Omeprazol 20 mg x 1) för ulcusläkning. Fortsätter med järnsubstitution. Koloskopi avbokas då blödningskällan bedöms identifierad. Hb-kontroll om 3 dagar."
 1980808-EFGH,Maria Berg,44,2026-05-09 09:30,Daganteckning,Ssk. Maria Nilsson,"### Aktuellt
 Mår fint. Inga bukbesvär av Omeprazol eller Niferex. Hb har stigit till 95 g/L."
-1980808-EFGH,Maria Berg,44,2026-05-12 11:00,Daganteckning,Dr. Erik Ek,"### Subjektivt
+1980808-EFGH,Maria Berg,44,2026-05-12 11:00,Daganteckning,Dr. Erik Ek,"### Aktuellt
 Upplever markant förbättring av orken. Ingen andfåddhet vid plan gång längre.
-### Objektivt
+### Status
 Hb uppmäts till 105 g/L. Färg på hud och slemhinnor förbättrad.
-### Assessment
+### Bedömning
 God terapeutisk respons på järnsubstitution och syrahämning.
 ### Planering
 Utskrivning planeras till den 16 maj. Fortsatt monitorering."
-1980808-EFGH,Maria Berg,44,2026-05-16 15:45,Slutanteckning,Dr. Erik Ek,"### Subjektivt
+1980808-EFGH,Maria Berg,44,2026-05-16 15:45,Slutanteckning,Dr. Erik Ek,"### Aktuellt
 Känner sig nästan helt återställd vid utskrivning. God aptit och normaliserad energinivå.
-### Objektivt
+### Status
 Hb har stigit till 112 g/L vid utskrivningstestet. Stabil hemodynamik.
-### Assessment
+### Bedömning
 Järnbristanemi orsakad av duodenalulcus. Ulcus framgångsrikt behandlat med Omeprazol. Järndepåer under återuppbyggnad.
 ### Planering
 Utskrives till hemmet. Fortsatt behandling med Omeprazol 20 mg dagligen i ytterligare 2 veckor, samt Niferex 100 mg dagligen i 3 månader. Remiss till vårdcentral för Hb-kontroll om 4 veckor."
